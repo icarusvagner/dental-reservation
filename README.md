@@ -82,7 +82,7 @@ cd dental-reservation
 Install dependencies first
 
 ```
-php artisan install && php artisan update && npm i
+composer install && composer update && npm i
 ```
 
 Migrate database
