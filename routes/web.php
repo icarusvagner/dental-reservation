@@ -69,7 +69,7 @@ Route::prefix("dentist")
 Route::prefix("patient")
     ->middleware(["auth", "verified", "rolemanager:patient"])
     ->group(function () {
-        Route::view("/", "dashboard")->name("patient_dashboard");
+        Route::view("/", "patient.dashboard")->name("patient_dashboard");
         Route::view("profile", "profile")->name("patient_profile");
         Route::view("doctor", "patient.doctor")->name("patient_doctor");
         Route::view("notifications", "patient.notification")->name(

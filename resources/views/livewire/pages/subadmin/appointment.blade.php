@@ -19,6 +19,8 @@ new class extends Component {
     public bool $resrv_modal = false;
     public int $resrv_id;
     public int $resrv_status = 0;
+    public string|null $temp_app_q = "";
+    public int|null $temp_d_id = 0;
     public string $cn = "";
 
     public array $soryBy = [
@@ -28,7 +30,9 @@ new class extends Component {
 
     public function mount($appointment_q = "", $d_id = 0): void
     {
-        $this->fetch_reservation($appointment_q, $d_id);
+        $this->temp_app_q = $appointment_q;
+        $this->temp_d_id = $d_id;
+        $this->fetch_reservation($this->temp_app_q, $this->temp_d_id);
     }
 
     public function fetch_reservation($aq, $d_id): void
@@ -125,7 +129,7 @@ new class extends Component {
         $this->resrv_id = $details["resrv_id"];
         $this->resrv_modal = true;
         $this->cn = $details["contact_no"];
-        $this->fetch_reservation();
+        $this->fetch_reservation($this->temp_app_q, $this->temp_d_id);
         return;
     }
 
@@ -151,7 +155,7 @@ new class extends Component {
         $result->reservation_status = $this->resrv_status;
         $result->save();
 
-        $this->fetch_reservation();
+        $this->fetch_reservation($this->temp_app_q, $this->temp_d_id);
         $this->resrv_modal = false;
         $this->success("Status updated", "toast-top toast-right");
         $stat_msg = "";

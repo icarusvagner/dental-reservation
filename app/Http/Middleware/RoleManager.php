@@ -23,7 +23,6 @@ class RoleManager
             return redirect()->route("login");
         }
         $auth_role = Auth::user()->user_role;
-        dd($role);
 
         switch ($role) {
             case "admin":
