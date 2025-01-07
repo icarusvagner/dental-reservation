@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\WebNotification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Volt\Component;
 
 new class extends Component {
@@ -15,6 +16,7 @@ new class extends Component {
     {
         $result = WebNotification::query()
             ->where("notif_status", "=", 0)
+            ->where("user_id", "=", 0)
             ->get();
 
         $this->notifications = $result->count();

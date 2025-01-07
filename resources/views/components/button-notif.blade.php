@@ -2,7 +2,11 @@
     'count'
 ])
 
+@if (auth()->user()->user_role === 2)
+<a type="button" class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white rounded-full" href="{{ route('dentist_notif') }}" >
+@else
 <a type="button" class="relative inline-flex items-center p-3 text-sm font-medium text-center text-white rounded-full" href="{{ route('subadmin_notif') }}" >
+@endif
     <span class="sr-only">notifications</span>
     @if($count == 0)
         <x-mary-icon name="o-bell" class="w-9 h-9" />

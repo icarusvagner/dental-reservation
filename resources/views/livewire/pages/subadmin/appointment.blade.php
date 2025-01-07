@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DentalClinic;
 use App\Models\SmsNotification;
 use App\Support\TimeRange;
 use App\Support\SendSMS;
@@ -25,14 +26,14 @@ new class extends Component {
         "direction" => "asc",
     ];
 
-    public function mount(): void
+    public function mount($appointment_q = "", $d_id = 0): void
     {
-        $this->fetch_reservation();
+        $this->fetch_reservation($appointment_q, $d_id);
     }
 
-    public function fetch_reservation(): void
+    public function fetch_reservation($aq, $d_id): void
     {
-        $this->reservations = Reservations::query()
+        $result = Reservations::query()
             ->leftjoin("users", "reservations.user_id", "=", "users.id")
             ->leftjoin("details", "users.details_id", "=", "details.id")
             ->leftjoin(
@@ -53,9 +54,18 @@ new class extends Component {
             concat(details.first_name, ' ', SUBSTRING(details.middle_name, 1, 1), '. ', details.last_name) as full_name,
             details.contact_no
         ")
-            )
-            ->orderBy(...array_values($this->soryBy))
-            ->get();
+            );
+
+        if ($aq != "") {
+            $res = DentalClinic::where("user_id", "=", $d_id)->get();
+            $result
+                ->where("services.dental_clinic_id", "=", $res[0]["id"])
+                ->get();
+        }
+        $result->orderBy(...array_values($this->soryBy))->get();
+
+        // dd($result);
+        $this->reservations = $result->get();
     }
 
     public function headers(): array

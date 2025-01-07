@@ -21,6 +21,7 @@ return new class extends Migration {
             // 0 - unread
             // 1 - read
             $table->tinyInteger("notif_status")->default(0);
+            $table->tinyInteger("dentist_status")->default(0);
             $table->timestamps();
         });
     }

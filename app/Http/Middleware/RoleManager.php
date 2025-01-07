@@ -22,7 +22,8 @@ class RoleManager
         if (!Auth::check()) {
             return redirect()->route("login");
         }
-        $auth_role = Auth::user()->role;
+        $auth_role = Auth::user()->user_role;
+        dd($role);
 
         switch ($role) {
             case "admin":

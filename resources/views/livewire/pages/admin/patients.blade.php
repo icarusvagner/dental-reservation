@@ -143,7 +143,9 @@ new class extends Component {
         </div>
         <div class="flex gap-3 items-center mt-5">
             <x-mary-button label="Cancel" @click="$wire.detail_modal = false" />
-            <x-mary-button icon="o-trash" class="btn-circle btn-ghost text-red-500" wire:click="remove" />
+            @if(auth()->user()->user_role !== 2)
+                <x-mary-button icon="o-trash" class="btn-circle btn-ghost text-red-500" wire:click="remove" />
+            @endif
         </div>
     </x-mary-modal>
 </div>

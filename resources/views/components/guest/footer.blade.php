@@ -40,6 +40,8 @@
             <a href="/" class="text-md hover:text-primary duration-200 ease-linear">Help</a>
             <a href="/" class="text-md hover:text-primary duration-200 ease-linear">Privacy Policy</a>
             <a href="/" class="text-md hover:text-primary duration-200 ease-linear">Disclaimer</a>
+            <a href="/" class="text-md hover:text-primary duration-200 ease-linear">Team</a>
+            <a href="/" class="text-md hover:text-primary duration-200 ease-linear">Contact</a>
         </div>
         <h1>SOY Dental Reservation Clinic - All Rights Reserved 2024</h1>
     </div>

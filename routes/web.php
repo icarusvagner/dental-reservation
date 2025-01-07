@@ -28,7 +28,9 @@ Route::prefix("subadmin")
         Route::view("dashboard", "subadmin.dashboard")->name(
             "subadmin_dashboard"
         );
-        Route::view("patients", "admin.patients")->name("patients");
+        Route::view("patients", "admin.patients")
+            ->middleware("rolemanager:dentist")
+            ->name("patients");
         Route::view("dentists", "admin.dentists")->name("dentists");
         Route::view("schedules", "subadmin.schedules")->name("schedules");
         Route::view("notifications", "subadmin.notification")->name(
@@ -38,13 +40,15 @@ Route::prefix("subadmin")
         Route::view("new-schedule", "subadmin.new-schedule")->name(
             "new_schedule"
         );
-        Route::view("appointment", "subadmin.appointment")->name("appointment");
+        Route::view("appointment", "subadmin.appointment")
+            ->middleware("rolemanager:dentist")
+            ->name("appointment");
     });
 
 Route::prefix("dentist")
     ->middleware(["auth", "verified", "rolemanager:dentist"])
     ->group(function () {
-        Route::view("/", "dashboard")->name("dentist_dashboard");
+        Route::view("", "dentist.dashboard")->name("dentist_dashboard");
         Route::view("profile", "profile")->name("dentist_profile");
         Route::prefix("clinic")->group(function () {
             Route::view("/", "dentist.clinic")->name("clinic");
@@ -57,8 +61,8 @@ Route::prefix("dentist")
         });
         Route::view("patients", "dentist.patient")->name("patient");
         Route::view("appointment", "dentist.reservation")->name("reservation");
-        Route::view("notifications", "dentist.notification")->name(
-            "notification"
+        Route::view("notifications", "dentist.notifications")->name(
+            "dentist_notif"
         );
     });
 
