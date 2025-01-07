@@ -64,3 +64,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Installation
+
+Make sure git and laravel/composer is installed
+
+```
+git clone https://github.com/vladiere/dental-reservation
+
+cd dental-reservation
+```
+
+Install dependencies first
+
+```
+php artisan install && php artisan update && npm i
+```
+
+Migrate database
+
+```
+php artisan migrate
+```
+
+Run the app with artisan
+
+```
+php artisan serve
+```
+
+Run npm for the components library
+
+```
+npm run dev
+```
+
+open localhost:8000
