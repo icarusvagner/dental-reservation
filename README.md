@@ -65,6 +65,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+# Requirements
+
+MySQL, NodeJS (for npm) and Composer (for laravel)
+
 ## Installation
 
 Make sure git and laravel/composer is installed
